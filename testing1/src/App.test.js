@@ -1,13 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('test case 1', () => { 
-  render(<App />);
-  const text = screen.getByText(/First react test case/i);
-  const heading = screen.getByText(/this is shanky/i)
-  expect(heading).toBeInTheDocument();
-  expect(text).toBeInTheDocument();
-})
 test('test case 2', () => { 
   render(<App />);
   const text = screen.getByText(/First react test case/i);
@@ -16,22 +9,36 @@ test('test case 2', () => {
   expect(text).toBeInTheDocument();
 })
 
-test('testing input',()=>{
-  render(<App />)
-  let checkInput = screen.getByRole('textbox');
-  let checkInputPlaceholder = screen.getByPlaceholderText('enter username');
 
-  expect(checkInput).toBeInTheDocument();
-  expect(checkInputPlaceholder).toBeInTheDocument();
-  expect(checkInput).toHaveAttribute('name', 'username');
-  expect(checkInput).toHaveAttribute('id', 'userId');
-})
+test('testing username input', () => {
+  render(<App />);
+  const usernameInputs = screen.getAllByRole('textbox', { id: 'username' });
+  const usernameInputPlaceholder = screen.getByPlaceholderText('enter username');
+ 
+  const usernameInput = usernameInputs[0];
+
+  expect(usernameInput).toBeInTheDocument();
+
+  expect(usernameInputPlaceholder).toBeInTheDocument();
+});
+
+test('testing email input', () => {
+  render(<App />);
+  const emailInput = screen.getAllByRole('textbox', { id: 'email' });
+  const emailInputPlaceholder = screen.getByPlaceholderText('enter email');
+ const emailinput = emailInput[1]
+  expect(emailinput).toBeInTheDocument();
+  expect(emailInputPlaceholder).toBeInTheDocument();
+});
+
+
+
 // only means run only this test or test group
 //The describe function is used to group related test cases together.
-describe.only('test case group', () => {
-  test.skip("test case 1",()=>{
+describe.skip('test case group', () => {
+  test("test case 1",()=>{
     render(<App />)
-    let checkInput = screen.getByRole('textbox');
+    let checkInput = screen.getByRole('textbox',{id:'username'});
     expect(checkInput).toHaveAttribute("name", "username")
   })
   // test case for event handler

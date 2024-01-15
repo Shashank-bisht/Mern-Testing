@@ -18,3 +18,11 @@ test('array', () => {
     expect(animals).toBeInstanceOf(Array)
     // expect(animals).toEqual(['cat', 'dog'])
 })
+
+function getData(){
+    throw new Error('data not found')
+}
+
+test('getdata',()=>{
+    expect(()=>getData()).toThrow('data not found');
+})

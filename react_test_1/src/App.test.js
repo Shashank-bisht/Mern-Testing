@@ -1,27 +1,28 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen,waitFor } from '@testing-library/react';
 import App from './App';
 import user from '@testing-library/user-event'
 
- test('can receive a new user and show it on the a list', () => {
-  render(<App/>)
-  const nameInput = screen.getByRole('textbox',{
-    name:/name/i
-  })
-  const emailInput = screen.getByRole('textbox',{
-    name:/email/i
-  })
-  const button = screen.getByRole('button')
+test('can receive a new user and show it on the a list', async() => {
+  render(<App/>);
+  const nameInput = screen.getByRole('textbox', { name: /name/i });
+  const emailInput = screen.getByRole('textbox', { name: /email/i });
+  const button = screen.getByRole('button');
 
   user.click(nameInput);
-  user.keyboard('shanky')
+  user.type(nameInput, 'shanky'); // Use user.type() for simulating keyboard input
+
   user.click(emailInput);
-  user.keyboard('shanky@gmail.com')
+  user.type(emailInput, 'shanky@gmail.com'); // Use user.type() for simulating keyboard input
 
-  user.click(button)
+  user.click(button);
+  // screen.debug();
+// })
 
+await waitFor(() => {
   const name = screen.getByText('shanky');
   const email = screen.getByText('shanky@gmail.com');
 
   expect(name).toBeInTheDocument();
   expect(email).toBeInTheDocument();
+})
 })
