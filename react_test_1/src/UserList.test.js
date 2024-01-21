@@ -33,6 +33,7 @@ test('render the email and name of each user',()=>{
    const {users} = renderComponent();
 
     for (let user of users){
+        // cell is used for table
         const name = screen.getByRole('cell',{name: user.name})
         const email = screen.getByRole('cell',{name: user.email})
 

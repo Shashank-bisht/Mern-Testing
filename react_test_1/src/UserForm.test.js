@@ -14,6 +14,8 @@ test('It shows two inputs and a button', () => {
     expect(button).toBeInTheDocument()
 })
 
+
+
 test('It calls onUserAdd when the form is submitted',  () => {
 
       // not best implementation
@@ -68,6 +70,7 @@ test('empties the two inputs when form is submitted', async () => {
     const emailInput = screen.getByRole('textbox', {
         name: /email/i
     });
+    
     const button = screen.getByRole('button');
     await waitFor(() => {
     user.click(nameInput);

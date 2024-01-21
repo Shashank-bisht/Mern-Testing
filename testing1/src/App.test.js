@@ -9,19 +9,20 @@ test('test case 2', () => {
   expect(text).toBeInTheDocument();
 })
 
-
+// test for username
 test('testing username input', () => {
   render(<App />);
+// get all the textbox
   const usernameInputs = screen.getAllByRole('textbox', { id: 'username' });
   const usernameInputPlaceholder = screen.getByPlaceholderText('enter username');
- 
+//  choose the first textbox because getAllByRole returns an array 
   const usernameInput = usernameInputs[0];
-
+// assertion 
   expect(usernameInput).toBeInTheDocument();
-
   expect(usernameInputPlaceholder).toBeInTheDocument();
 });
 
+// test for email
 test('testing email input', () => {
   render(<App />);
   const emailInput = screen.getAllByRole('textbox', { id: 'email' });
@@ -41,6 +42,7 @@ describe.skip('test case group', () => {
     let checkInput = screen.getByRole('textbox',{id:'username'});
     expect(checkInput).toHaveAttribute("name", "username")
   })
+
   // test case for event handler
   test('renders input with value and handles onChange', () => {
     // Render the App component
@@ -61,27 +63,4 @@ describe.skip('test case group', () => {
     // Check if the input value is updated
     expect(inputElement).toHaveValue('TestInputValue');
   });
-
-// test for click event
-test('button click updates state and renders content', () => {
-  // Render the App component
-  render(<App />);
-
-  // Query the button element
-  const buttonElement = screen.getAllByText(/button/i);
-
-  // Check if the button element is present
-  expect(buttonElement).toBeInTheDocument();
-
-  // Check the initial state and content
-  const initialData = screen.getAllByText(/button/i);
-  expect(initialData).toBeInTheDocument();
-
-  // Click the button
-  fireEvent.click(buttonElement);
-
-  // Check if the state is updated
-  const updatedData = screen.getByText(/Updated Data/i);
-  expect(updatedData).toBeInTheDocument();
-});
 })

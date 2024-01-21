@@ -12,7 +12,7 @@ function App() {
       {/* <input type="text" name='username' placeholder="enter username" id='userId'/> */}
       <br /><br />
       <input type="text" value={data} placeholder='enter username' id='username' onChange={(e) => setData(e.target.value)} />
-  <input type="text" id='email' placeholder='enter email' />
+      <input type="text" id='email' placeholder='enter email' />
       <button onClick={()=>{
         setData(data)
       }}>{data}</button>

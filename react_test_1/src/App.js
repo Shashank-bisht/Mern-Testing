@@ -6,7 +6,8 @@ function App() {
   const [users, setUsers] = useState([]);
   const onUserAdd = (user) => {
     setUsers([...users, user]);
-    console.log(users);
+    // add user which is coming from UserForm
+    // console.log(users);
  }
 
   return (

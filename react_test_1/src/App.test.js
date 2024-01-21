@@ -18,6 +18,8 @@ test('can receive a new user and show it on the a list', async() => {
   // screen.debug();
 // })
 
+// waiting because when button will be click data will not be added immediatly
+//In this case, it waits for the appearance of the elements with the text 'shanky' and 'shanky@gmail.com' 
 await waitFor(() => {
   const name = screen.getByText('shanky');
   const email = screen.getByText('shanky@gmail.com');
